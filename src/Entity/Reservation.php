@@ -20,6 +20,18 @@ class Reservation
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_retour = null;
 
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Agence $agence = null;
+
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Voitures $voiture = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +57,42 @@ class Reservation
     public function setDateRetour(\DateTimeInterface $date_retour): static
     {
         $this->date_retour = $date_retour;
+
+        return $this;
+    }
+
+    public function getAgence(): ?Agence
+    {
+        return $this->agence;
+    }
+
+    public function setAgence(?Agence $agence): static
+    {
+        $this->agence = $agence;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getVoiture(): ?Voitures
+    {
+        return $this->voiture;
+    }
+
+    public function setVoiture(?Voitures $voiture): static
+    {
+        $this->voiture = $voiture;
 
         return $this;
     }
