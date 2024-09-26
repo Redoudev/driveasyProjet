@@ -1,0 +1,119 @@
+.admin-content {
+  display: flex;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  height: 92vh;
+}
+
+.sidebar nav a {
+  padding: 1rem 0;
+  color: #000;
+  transition: 0.3s ease-in-out;
+}
+
+.sidebar nav a:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+.profil {
+  padding: 2rem;
+  text-align: right;
+}
+
+.datas-content {
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  margin: 1rem;
+  padding: 2rem;
+}
+
+.add-data {
+  display: flex;
+  justify-content: end;
+  padding: 2rem;
+}
+
+.add-data a {
+  color: #000;
+  padding: 0.75rem;
+  border: 1px solid #000;
+  border-radius: 15px;
+  transition: 0.3s ease-in-out;
+}
+.add-data a:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.table > :not(caption) > * > * {
+  padding: 1.5rem 1.5rem;
+}
+
+.datas-content #user,
+.datas-content #voitures,
+.datas-content #agence,
+.datas-content #reservation {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 1rem;
+}
+
+.datas-content #user div,
+.datas-content #voitures div,
+.datas-content #agence div,
+.datas-content #reservation div {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+}
+
+body
+  > div.admin-content
+  > div.col-md-9
+  > div.datas-content
+  > div.table-responsive
+  > table
+  > tbody
+  > tr
+  > td {
+  --bs-table-bg-type: #fff;
+}
+
+body > div.admin-content > div.col-md-9 > div.datas-content > form > button {
+  margin-top: 2rem;
+  font-weight: 600;
+  border: 1px solid #000;
+  transition: 0.3s ease-in-out;
+}
+
+body
+  > div.admin-content
+  > div.col-md-9
+  > div.datas-content
+  > form
+  > button:hover {
+  background: #000;
+  color: #fff;
+}
+
+@media only screen and (max-width: 760px) {
+  .admin-content {
+    flex-direction: column;
+  }
+  .sidebar nav {
+    margin-top: 3rem;
+    height: 100%;
+  }
+  body {
+    overflow: inherit;
+    height: 100%;
+  }
+}

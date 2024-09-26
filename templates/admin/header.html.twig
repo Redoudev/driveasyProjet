@@ -1,0 +1,29 @@
+<style>
+	body,
+	html {
+		overflow: hidden;
+		height: 100vh;
+	}
+
+@media only screen and (max-width: 760px) {
+
+		body {
+			overflow: auto;
+			height: 100%;
+		}
+	}
+</style>
+<div class="col-12 col-md-3 mb-4 h-100">
+	<nav class="sidebar bg-gray">
+		<img src="{{ asset('images/logo_admin.png') }}" alt="Logo Admin Image" class="img-fluid">
+		<nav class="links_admin">
+			<a class="fw-bold" href="{{path('app_voitures_index')}}">Gérer les Voitures</a>
+
+			<a class="fw-bold" href="{{path('app_user_index')}}">Gérer les Utilisateurs</a>
+
+			<a class="fw-bold" href="{{path('app_agence_index')}}">Gérer les Agences</a>
+
+			<a class="fw-bold" href="{{path('app_reservation_index')}}">Gérer les Réservations</a>
+		</nav>
+	</nav>
+</div>

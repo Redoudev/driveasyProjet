@@ -3,24 +3,11 @@
 {% block title %}Admin Dashboard
 {% endblock %}
 
-{% block body %}
-	<h1>Espace Administration</h1>
 
-	<ul>
-		<li>
-			<a class="" href="{{path('app_voitures_index')}}">Gérer les Voitures</a>
-		</li>
-		<li>
-			<a class="" href="{{path('app_user_index')}}">Gérer les Utilisateurs</a>
+{% block header %}
+	{% include 'admin/header.html.twig' %}
 
-		</li>
-		<li>
-			<a class="" href="{{path('app_agence_index')}}">Gérer les Agences</a>
-
-		</li>
-		<li>
-			<a class="" href="{{path('app_reservation_index')}}">Gérer les Réservations</ahref=>
-
-		</li>
-	</ul>
 {% endblock %}
+
+
+{% block body %}{% endblock %}
