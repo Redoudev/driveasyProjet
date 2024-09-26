@@ -1,11 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Voitures{% endblock %}
+{% block title %}New Voitures
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Voitures</h1>
+	<div class="admin-content">
+		{% include 'admin/header.html.twig' %}
+		<div class="col-md-9 ">
+			<div class="profil bg-secondary">
+				<div class="profil-name">Bonjour
+					<span class="fw-bold">Thomas</span>
+				</div>
+			</div>
+			<div class="datas-content">
+				<div class="add-data">
+					<a href="{{ path('app_voitures_index') }}">Retour à la liste</a>
+				</div>
+				{{ include('voitures/_form.html.twig') }}
+			</div>
+		</div>
+	</div>
 
-    {{ include('voitures/_form.html.twig') }}
-
-    <a href="{{ path('app_voitures_index') }}">back to list</a>
 {% endblock %}
