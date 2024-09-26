@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}À Propos de Nous - Agence de Location de Voitures{% endblock %}
+
+{% block body %}
+
+<style>
+    .about-wrapper p {
+        font-size: 0.9rem;
+    }
+
+    .about-wrapper h1, .about-wrapper h2 {
+        font-weight: 500;
+    }
+
+    .about-wrapper img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .text-section {
+        padding-right: 2rem;
+    }
+</style>
+
+<div class="container my-5 d-flex align-items-center justify-content-center " style="min-height: 80vh;">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-6 text-section text-center text-md-start">
+            <h1 class="text-dark mb-4">À Propos de Notre Agence</h1>
+
+             <div class="mb-3">
+                <img src="{{ asset('images/agence_de_location.webp') }}" alt="Agence de Location de Voitures" class="img-fluid">
+            </div>
+            
+            <p>Bienvenue chez <strong>DriveEasy</strong>, votre agence de location de voitures fiable et efficace. Depuis notre création, nous nous efforçons de vous offrir un service de qualité, avec des véhicules adaptés à vos besoins et des tarifs compétitifs.</p>
+
+            <div class="mission mb-4">
+                <h2 class="h4 text-dark">Notre Mission</h2>
+                <p>Chez DriveEasy, notre mission est de faciliter vos déplacements en vous offrant un large choix de véhicules modernes et bien entretenus. Que vous ayez besoin d’une voiture pour un déplacement professionnel, des vacances ou un événement spécial, nous sommes là pour vous accompagner avec des solutions flexibles et abordables.</p>
+            </div>
+
+            <div class="vision mb-4">
+                <h2 class="h4 text-dark">Notre Vision</h2>
+                <p>Nous visons à devenir la référence dans le secteur de la location de voitures en mettant la satisfaction du client au cœur de nos priorités. Nous nous engageons à constamment innover, à élargir notre flotte et à adopter des pratiques durables pour minimiser notre empreinte carbone.</p>
+            </div>
+
+            <div class="d-grid gap-2 d-md-block">
+                <button class="btn btn-dark" type="button">Contactez-nous</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+{# href="{{ path('contact') }}" #}
