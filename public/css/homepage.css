@@ -1,0 +1,115 @@
+.hero-landing {
+  background-image: url("/images/landing-image.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+.hero-landing::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  opacity: 0.6;
+  z-index: 2;
+}
+
+.landing-content {
+  position: relative;
+  z-index: 3;
+}
+
+.slogan {
+  color: #fff;
+  font-size: 2rem;
+}
+.slogan span {
+  font-size: 2.5rem;
+}
+.sub-slogan {
+  max-width: 400px;
+}
+
+.about-texte {
+  max-width: 500px;
+}
+
+.btn-more {
+  z-index: 1;
+  position: relative;
+  padding: 0.5rem;
+}
+.btn-more::before {
+  background: #000;
+  content: "";
+  inset: 0;
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease-in-out;
+  z-index: -1;
+}
+.btn-more:hover .btn-more-icon {
+  transform: rotate(50deg);
+  color: #fff !important;
+}
+.btn-more:hover .btn-more-text {
+  color: #fff !important;
+}
+.btn-more:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.btn-more-text {
+  font-size: clamp(0.8rem, 2.5cqw, 1rem);
+  font-weight: 700;
+  padding-right: 0.5rem;
+  color: var(--color-base-shade);
+  text-transform: uppercase;
+  color: #000;
+}
+.btn-more-icon {
+  transition: 0.3s;
+  color: #000;
+  transform: rotate(90deg);
+  width: 1.5rem;
+}
+
+.reassurance-card {
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+  background-color: #fff;
+  padding: 1rem;
+}
+
+.reassurance-card p {
+  max-width: 200px;
+}
+
+.contact-us p {
+  max-width: 500px;
+}
+
+.bg-gray {
+  background-color: #d9d9d9;
+}
+
+/* MEDIA QUERIES 500px */
+@media only screen and (max-width: 500px) {
+  .hero-landing {
+    height: 90vh;
+  }
+}
