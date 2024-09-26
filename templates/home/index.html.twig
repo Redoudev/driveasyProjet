@@ -1,20 +1,92 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Hello HomeController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<section class="hero-landing">
+		<div class="container landing-content">
+			<div class="slogan">Louer des voitures
+				<br>
+				<span>FACILEMENT</span>
+			</div>
+			<p class="sub-slogan">Accédez facilement à une voiture avec DrivEasy en un clic</p>
+			<button type="button" class="btn btn-primary btn-lg">CHOISIR  UNE VOITURE</button>
+		</div>
+	</section>
+	<section class="hero-about bg-secondary">
+		<div class="container about-content">
+			<h2 class="pt-5 text-uppercase">A propos de nous</h2>
+			<div class="row align-items-center mt-5">
+				<div class="col-md-6">
+					<p class="about-texte">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel velit est. Maecenas purus enim, imperdiet scelerisque tincidunt vel, rhoncus ac sem. Donec mattis blandit neque, sed condimentum risus. Pellentesque eros orci, ornare a consectetur ac, facilisis ac purus. Pellentesque rhoncus eros lectus, ut placerat diam sodales at. Donec ipsum est, maximus in neque nec, molestie volutpat elit. Duis facilisis ex vitae diam scelerisque cursus. Mauris finibus lobortis diam, quis vestibulum arcu tempus sed. Vivamus sit amet vulputate dolor.
+					</p>
+				</div>
+				<div class="col-md-6">
+					<img src="{{ asset('images/about-img.png') }}" alt="About Image" class="img-fluid">
+				</div>
+			</div>
+			<a href="#" class='btn-more'>
+				<span class="btn-more-text">EN SAVOIR PLUS</span>
+				<svg class="btn-more-icon icon icon-xl" aria-hidden="true" focusable="false">
+					<use xlink:href="#right-arrow"></use>
+				</svg>
+			</a>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+			<h3 class="mt-5 text-center">Pourquoi Choisir Driveasy ?</h3>
+			<div class="row mt-5 justify-content-between p-5 gap-5">
+				<div class="reassurance-card col-md-3">
+					<img src="{{ asset('images/bestprice.png') }}" alt="About Image" class="img-fluid">
+					<h4>Meilleur Prix</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curab.</p>
+				</div>
+				<div class="reassurance-card col-md-3">
+					<img src="{{ asset('images/shield.png') }}" alt="About Image" class="img-fluid">
+					<h4>Rapide et Sécurisé</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curab.</p>
+				</div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/Admin Stagiaire/Desktop/drivesayProjet/driveasyProjet/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>C:/Users/Admin Stagiaire/Desktop/drivesayProjet/driveasyProjet/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+				<div class="reassurance-card col-md-3">
+					<img src="{{ asset('images/experience.png') }}" alt="About Image" class="img-fluid">
+					<h4>Experience Divers</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curab.</p>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<section class="cars">
+		<div class="container">
+			<h2 class="pt-5 text-uppercase">NOS VOITURES</h2>
+			<p class="pt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curab.</p>
+			<img src="{{ asset('images/cars.png') }}" alt="About Image" class="img-fluid pt-5">
+			<div>
+				<a href="#" class='btn-more'>
+					<span class="btn-more-text">EN SAVOIR PLUS</span>
+					<svg class="btn-more-icon icon icon-xl" aria-hidden="true" focusable="false">
+						<use xlink:href="#right-arrow"></use>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</section>
+	<section class="contact-us bg-gray">
+		<div class="container">
+			<h2 class="pt-5 text-uppercase">Nous contacter</h2>
+			<p class="mt-5">Pour toute question ou assistance, vous pouvez nous joindre via notre formulaire de contact ou par e-mail à
+				<span class="fw-bold">support@driveasy.com.</span>
+				Nous sommes également disponibles au téléphone au
+				<span class="fw-bold">+33 1 23 45 67 89</span>,
+				<span class="link-underline-dark">x	du lundi au vendredi, de 9h à 18h.link-underline-dark</p>
+				<div>
+					<a href="#" class='btn-more'>
+						<span class="btn-more-text">ENVOYER UN MESSAGE</span>
+						<svg class="btn-more-icon icon icon-xl" aria-hidden="true" focusable="false">
+							<use xlink:href="#right-arrow"></use>
+						</svg>
+					</a>
+				</div>
+			</p>
+		</div>
+	</section>
 {% endblock %}
