@@ -1,0 +1,6 @@
+ div a img {
+    max-width: 400px;
+    min-width: 350px;
+    max-height: 400px;
+    min-height: 350px;
+  }

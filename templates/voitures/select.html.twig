@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voitures
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center m-5 p-3">Voitures</h1>
+
+	<section class="container mt-3">
+		<div class="d-flex flex-row justify-content-start flex-wrap mb-3">
+			{% for voiture in voitures %}
+				<div class="p-2 flex-grow-1">
+					<div class="d-flex flex-column">
+						<div class= "p-2">
+							<a href="{{ path('app_voitures_index', {id: voiture.id}) }}">
+								<img src="{{ voiture.image }}" alt="Voiture image">
+							</a>
+						</div>
+						<div class="p-2">
+							<table class="table">
+								<tbody>
+									<tr>
+										<th>Marque</th>
+										<td>{{ voiture.marque }}</td>
+									</tr>
+									<tr>
+										<th>Annee</th>
+										<td>{{ voiture.annee }}</td>
+									</tr>
+									<tr>
+										<th>Couleur</th>
+										<td>{{ voiture.couleur }}</td>
+									</tr>
+									<tr>
+										<th>Boite</th>
+										<td>{{ voiture.boite }}</td>
+									</tr>
+									<tr>
+										<th>Carburant</th>
+										<td>{{ voiture.carburant }}</td>
+									</tr>
+									<tr>
+										<th>Prix</th>
+										<td>{{ voiture.prix }}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+                
+			{% endfor %}
+		</div>
+	</section>
+
+{% endblock %}

@@ -22,6 +22,15 @@ final class VoituresController extends AbstractController
         ]);
     }
 
+    #[Route('/select', name: 'app_voitures_select', methods: ['GET'])]
+    public function selectionVoitures(VoituresRepository $voituresRepository): Response
+    {
+        $voitures = $voituresRepository->findAll();
+        return $this->render('voitures/select.html.twig', [
+            'voitures' => $voitures,
+        ]);
+    }
+
     #[Route('/new', name: 'app_voitures_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
