@@ -15,7 +15,7 @@ class FormLoginAuthenticatorController extends AbstractController
 
         // Si l'utilisateur est déjà connecté, on le redirige vers la page d'accueil
         if ($this->getUser()) {
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_account');
         }
 
         // get the login error if there is one

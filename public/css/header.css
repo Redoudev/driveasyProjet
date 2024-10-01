@@ -13,14 +13,18 @@ header {
   z-index: 100;
   width: 100%;
   max-height: 150px;
-  padding: 2rem;
+  padding: 1.5rem 1rem;
   background-color: #888282;
 }
 
 .menu-header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
   align-items: center;
+  justify-items: center;
 }
 
 header .container-menu {
@@ -46,6 +50,7 @@ header .links {
 header .links a {
   color: #fff;
   font-weight: 500 !important;
+  font-size: 22px;
 }
 
 .click-btn {
@@ -160,6 +165,7 @@ header .links a {
   }
   .menu-header .profil {
     padding: 0;
+    display: flex;
   }
   .menu-header .profil-text {
     display: none;
@@ -172,5 +178,10 @@ header .links a {
   }
   header .links {
     width: 50vw;
+  }
+  .click-btn {
+    width: 35px;
+    height: 35px;
+    margin: 0.2rem;
   }
 }

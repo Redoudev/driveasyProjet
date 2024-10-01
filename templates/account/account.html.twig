@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Compte - DrivEasy, Agence de Location de Voitures
+{% endblock %}
+
+{% block body %}
+	<div class="login container mt-5 d-flex">
+		<div class="col-12 col-md-8 login-content">
+			<h1>Bienvenue
+				{{ app.user.prenom }}
+			</h1>
+			<div class="list-buttons">
+				<a href="{{ path('app_account_edit') }}" class="btn btn-primary btn-lg">Gérer mon compte</a>
+				<a href="{{ path('app_account_password') }}" class="btn btn-primary btn-lg">Modifier mon mot de passe</a>
+				<a href="{{ path('app_account_reservations') }}" class="btn btn-primary btn-lg">Voir mes réservations</a>
+			</div>
+		</div>
+		<div class="col-md-4 login-img">
+			<img src="{{ asset('images/login.png') }}" alt="Logo Admin Image" class="img-fluid">
+		</div>
+	</div>
+{% endblock %}
