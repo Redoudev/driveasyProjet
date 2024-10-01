@@ -9,11 +9,12 @@ a {
 }
 
 header {
-  position: absolute;
+  position: relative;
   z-index: 100;
   width: 100%;
   max-height: 150px;
   padding: 2rem;
+  background-color: #888282;
 }
 
 .menu-header {
@@ -39,6 +40,7 @@ header .links {
   padding: 2rem;
   height: 100vh;
   top: 0;
+  width: 25vw;
 }
 
 header .links a {
@@ -167,5 +169,8 @@ header .links a {
   }
   .menu-header img {
     max-width: 150px;
+  }
+  header .links {
+    width: 50vw;
   }
 }

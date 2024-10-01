@@ -33,8 +33,7 @@
 									<td>{{ reservation.dateDepart ? reservation.dateDepart|date('Y-m-d') : '' }}</td>
 									<td>{{ reservation.dateRetour ? reservation.dateRetour|date('Y-m-d') : '' }}</td>
 									<td>
-										<a href="{{ path('app_reservation_show', {'id': reservation.id}) }}">show</a>
-										<a href="{{ path('app_reservation_edit', {'id': reservation.id}) }}">edit</a>
+										<a href="{{ path('app_reservation_edit', {'id': reservation.id}) }}">Modifier</a>
 									</td>
 								</tr>
 							{% else %}
