@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Reservation;
+use App\Entity\Voitures;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
+use App\Repository\VoituresRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +29,7 @@ final class ReservationController extends AbstractController
     {
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
-        $form->handleRequest($request);
+        $form->handleRequest($request); 
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($reservation);
@@ -37,6 +39,33 @@ final class ReservationController extends AbstractController
         }
 
         return $this->render('reservation/new.html.twig', [
+            'reservation' => $reservation,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/resa/{id}', name: 'app_reservation_resa', methods: ['GET', 'POST'])]
+    public function reservation(int $id, VoituresRepository $voituresRepository, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $voiture = $voituresRepository->find($id);
+        //$user = $this->getUser();
+        $reservation = new Reservation(); // la je cree une new instance
+        // 
+        $reservation->setVoiture($voiture);
+        $reservation->setAgence($voiture->getAgence());
+        //$reservation->setUser($user);
+        //
+        $form = $this->createForm(ReservationType::class, $reservation); // la je creer un form et je mets les info de mon instance vide $reservation qui vont être rempli
+        $form->handleRequest($request); // je charge tout les infos rempli en post
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($reservation); // Si tout s'est bien passé let's go sa envoi
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('reservation/resa.html.twig', [
             'reservation' => $reservation,
             'form' => $form,
         ]);

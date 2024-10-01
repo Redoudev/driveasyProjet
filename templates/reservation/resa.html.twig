@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Reservation
+{% endblock %}
+
+{% block body %}
+	<div class="admin-content">
+		<div class="col-md-9 ">
+			<div class="datas-content">
+				{{ include('reservation/_form.html.twig') }}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
