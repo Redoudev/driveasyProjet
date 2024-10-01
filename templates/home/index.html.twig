@@ -4,12 +4,20 @@
 {% block title %}Hello HomeController!
 {% endblock %}
 
-{% block header %}
-	{% include 'partials/header/header.html.twig' %}
-{% endblock %}
-
 
 {% block body %}
+
+	<style>
+		header {
+			position: absolute !important;
+			z-index: 100;
+			width: 100%;
+			max-height: 150px;
+			padding: 2rem;
+			background-color: transparent !important;
+		}
+	</style>
+
 	<section class="hero-landing">
 		<div class="container landing-content">
 			<div class="slogan">Louer des voitures
@@ -95,8 +103,4 @@
 			</p>
 		</div>
 	</section>
-{% endblock %}
-
-{% block footer %}
-	{% include 'partials/footer/footer.html.twig' %}
 {% endblock %}
