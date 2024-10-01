@@ -21,7 +21,9 @@
 				<span>FACILEMENT</span>
 			</div>
 			<p class="sub-slogan">Accédez facilement à une voiture avec DrivEasy en un clic</p>
+			<a href="{{path('app_voitures_select')}}">
 			<button type="button" class="btn btn-primary btn-lg">CHOISIR  UNE VOITURE</button>
+			</a>
 		</div>
 	</section>
 	<section class="hero-about bg-secondary">
@@ -36,7 +38,7 @@
 					<img src="{{ asset('images/about-img.png') }}" alt="About Image" class="img-fluid">
 				</div>
 			</div>
-			<a href="#" class='btn-more'>
+			<a href="{{path('app_about')}}" class='btn-more'>
 				<span class="btn-more-text">EN SAVOIR PLUS</span>
 				<svg class="btn-more-icon icon icon-xl" aria-hidden="true" focusable="false">
 					<use xlink:href="#right-arrow"></use>
@@ -71,7 +73,7 @@
 			<p class="pt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curab.</p>
 			<img src="{{ asset('images/cars.png') }}" alt="About Image" class="img-fluid pt-5">
 			<div>
-				<a href="#" class='btn-more'>
+				<a href="{{path('app_voitures_select')}}" class='btn-more'>
 					<span class="btn-more-text">EN SAVOIR PLUS</span>
 					<svg class="btn-more-icon icon icon-xl" aria-hidden="true" focusable="false">
 						<use xlink:href="#right-arrow"></use>

@@ -45,24 +45,34 @@ final class ReservationController extends AbstractController
     }
 
     #[Route('/resa/{id}', name: 'app_reservation_resa', methods: ['GET', 'POST'])]
-    public function reservation(int $id, VoituresRepository $voituresRepository, Request $request, EntityManagerInterface $entityManager): Response
+    public function reservation(int $id, VoituresRepository $voituresRepository, ReservationRepository $reservationRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
         $voiture = $voituresRepository->find($id);
-        //$user = $this->getUser();
+        $user = $this->getUser();
         $reservation = new Reservation(); // la je cree une new instance
-        // 
+        // Pré-remplisage
         $reservation->setVoiture($voiture);
         $reservation->setAgence($voiture->getAgence());
-        //$reservation->setUser($user);
+        $reservation->setUser($user);
         //
-        $form = $this->createForm(ReservationType::class, $reservation); // la je creer un form et je mets les info de mon instance vide $reservation qui vont être rempli
+        $form = $this->createForm(ReservationType::class, $reservation); // la je creer un form et je mets les info de mon instance vide ou non $reservation qui vont être rempli
         $form->handleRequest($request); // je charge tout les infos rempli en post
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($reservation); // Si tout s'est bien passé let's go sa envoi
-            $entityManager->flush();
+            $dateDepart = $reservation->getDateDepart();
+            $dateRetour = $reservation->getDateRetour();
+            
+            $existReservation = $reservationRepository->conflictReservations($voiture, $dateDepart, $dateRetour);
 
-            return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
+            // Condition multiple résa sur meme période + Message d'erreur
+            if (count($existReservation) > 0 || ($dateRetour < $dateDepart)) {
+                $this->addFlash('error', 'La voiture est déjà réservée pour cette période.');
+            } else {
+                $entityManager->persist($reservation); // Si tout s'est bien passé let's go sa envoi en bdd
+                $entityManager->flush();
+
+                return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->render('reservation/resa.html.twig', [
