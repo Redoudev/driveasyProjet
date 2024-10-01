@@ -42,6 +42,10 @@
   max-width: 500px;
 }
 
+.bg-white {
+  background-color: #fff;
+}
+
 .btn-more {
   z-index: 1;
   position: relative;

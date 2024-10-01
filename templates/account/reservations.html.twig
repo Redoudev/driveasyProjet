@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Réservations - DrivEasy
+{% endblock %}
+
+{% block body %}
+	<section class="bg-gray">
+		<div class="login container p-5">
+			<div class="col-12">
+				<h1 class="pb-5">Mes Réservations</h1>
+
+				{% if reservations is empty %}
+					<p>Vous n'avez fait aucune réservation pour le moment.</p>
+				{% else %}
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Date de début</th>
+								<th>Date de fin</th>
+								<th>Voiture</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for reservation in reservations %}
+								<tr>
+									<td>{{ reservation.dateDepart|date('d/m/Y') }}</td>
+									<td>{{ reservation.dateRetour|date('d/m/Y') }}</td>
+									<td>{{ reservation.voiture.marque }}
+										{{ reservation.voiture.modele }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				{% endif %}
+			</div>
+			<a href="{{ path('app_account') }}" class="btn btn-primary mt-3">Retour</a>
+
+		</div>
+
+
+	</section>
+
+{% endblock %}

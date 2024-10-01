@@ -1,0 +1,30 @@
+.login-content {
+  background-color: #f1f1f1;
+  padding: 2rem;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.login-img img {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.login .list-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 100%;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+}
+
+@media only screen and (max-width: 760px) {
+  .login-img {
+    display: none;
+  }
+  .login-content {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+}

@@ -1,90 +1,95 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block title %}Inscription
+{% endblock %}
 
 {% block body %}
 
-<style>
-    .form-control {
-        border: none;
-        border-radius: 5px;
-    }
+	<style>
+		.form-control {
+			border: none;
+			border-radius: 5px;
+		}
 
-    .btn-outline-dark {
-        background-color: white;
-        border: 2px solid black;
-        color: black;
-    }
+		.btn-outline-dark {
+			background-color: white;
+			border: 2px solid black;
+			color: black;
+		}
 
-    .btn-outline-dark:hover {
-        background-color: black;
-        color: white;
-    }
+		.btn-outline-dark:hover {
+			background-color: black;
+			color: white;
+		}
+	</style>
 
-    </style>
+	<div class="login container mt-5 d-flex">
+		<div class="login-content col-12 col-md-8">
+			<div class="row justify-content-center">
+				<div class="col-md-8">
+					<h1 class="text-center mb-4 font-weight-bold">S'inscrire</h1>
 
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <h1 class="text-center mb-4 font-weight-bold">S'inscrire</h1>
+					{{ form_start(registrationForm, {'attr': {'class': 'row g-3'}}) }}
 
-                {{ form_start(registrationForm, {'attr': {'class': 'row g-3'}}) }}
+					<div class="col-md-6">
+						{{ form_label(registrationForm.prenom, 'Prénom') }}
+						{{ form_widget(registrationForm.prenom, {'attr': {'class': 'form-control bg-dark text-white'}}) }}
+						{{ form_errors(registrationForm.prenom) }}
+					</div>
 
-                <div class="col-md-6">
-                    {{ form_label(registrationForm.prenom, 'Prénom') }}
-                    {{ form_widget(registrationForm.prenom, {'attr': {'class': 'form-control bg-dark text-white'}}) }}
-                    {{ form_errors(registrationForm.prenom) }}
-                </div>
+					<div class="col-md-6">
+						{{ form_label(registrationForm.nom, 'Nom de famille') }}
+						{{ form_widget(registrationForm.nom, {'attr': {'class': 'form-control bg-dark text-white'}}) }}
+						{{ form_errors(registrationForm.nom) }}
+					</div>
 
-                <div class="col-md-6">
-                    {{ form_label(registrationForm.nom, 'Nom de famille') }}
-                    {{ form_widget(registrationForm.nom, {'attr': {'class': 'form-control bg-dark text-white'}}) }}
-                    {{ form_errors(registrationForm.nom) }}
-                </div>
+					<div class="col-md-6">
+						{{ form_label(registrationForm.email, 'E-mail') }}
+						{{ form_widget(registrationForm.email, {'attr': {'class': 'form-control bg-dark text-white'}}) }}
+						{{ form_errors(registrationForm.email) }}
+					</div>
 
-                <div class="col-md-6">
-                    {{ form_label(registrationForm.email, 'E-mail') }}
-                    {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control bg-dark text-white'}}) }}
-                    {{ form_errors(registrationForm.email) }}
-                </div>
+					<div class="col-md-6">
+						{{ form_label(registrationForm.phone, 'Numéro de téléphone') }}
+						{{ form_widget(registrationForm.phone, {'attr': {'class': 'form-control bg-dark text-white'}}) }}
+						{{ form_errors(registrationForm.phone) }}
+					</div>
 
-                <div class="col-md-6">
-                    {{ form_label(registrationForm.phone, 'Numéro de téléphone') }}
-                    {{ form_widget(registrationForm.phone, {'attr': {'class': 'form-control bg-dark text-white'}}) }}
-                    {{ form_errors(registrationForm.phone) }}
-                </div>
+					<div class="col-md-6">
+						{{ form_label(registrationForm.adresse, 'Adresse') }}
+						{{ form_widget(registrationForm.adresse, {'attr': {'class': 'form-control bg-dark text-white'}}) }}
+						{{ form_errors(registrationForm.adresse) }}
+					</div>
 
-                <div class="col-md-6">
-                    {{ form_label(registrationForm.adresse, 'Adresse') }}
-                    {{ form_widget(registrationForm.adresse, {'attr': {'class': 'form-control bg-dark text-white'}}) }}
-                    {{ form_errors(registrationForm.adresse) }}
-                </div>
+					<div class="col-md-6">
+						{{ form_label(registrationForm.plainPassword, 'Mot de passe') }}
+						{{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control bg-dark text-white'}}) }}
+						{{ form_errors(registrationForm.plainPassword) }}
+					</div>
 
-                 <div class="col-md-6">
-                    {{ form_label(registrationForm.plainPassword, 'Mot de passe') }}
-                    {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control bg-dark text-white'}}) }}
-                    {{ form_errors(registrationForm.plainPassword) }}
-                </div>
+					<div class="col-md-6">
+						{{ form_label(registrationForm.confirmPassword, 'Confirmer Mot de passe') }}
+						{{ form_widget(registrationForm.confirmPassword, {'attr': {'class': 'form-control bg-dark text-white'}}) }}
+						{{ form_errors(registrationForm.confirmPassword) }}
+					</div>
 
-                <div class="col-md-6">
-                    {{ form_label(registrationForm.confirmPassword, 'Confirmer Mot de passe') }}
-                    {{ form_widget(registrationForm.confirmPassword, {'attr': {'class': 'form-control bg-dark text-white'}}) }}
-                    {{ form_errors(registrationForm.confirmPassword) }}
-                </div>
 
-                
+					<div class="col-md-12 text-center">
+						<button type="submit" class="btn btn-outline-dark mt-4">S'inscrire</button>
+					</div>
 
-                <div class="col-md-12 text-center">
-                    <button type="submit" class="btn btn-outline-dark mt-4">S'inscrire</button>
-                </div>
+					{{ form_end(registrationForm) }}
 
-                {{ form_end(registrationForm) }}
+					<div class="text-center mt-3">
+						<p>Tu as déjà un compte chez nous ?</p>
+						<a href="{{ path('app_login') }}" class=" text-decoration-underline text-dark font-weight-bold">Se connecter</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 login-img">
+			<img src="{{ asset('images/login.png') }}" alt="Logo Admin Image" class="img-fluid">
+		</div>
 
-                <div class="text-center mt-3">
-                    <p>Tu as déjà un compte chez nous ?</p>
-                    <a  href="{{ path('app_login') }}" class=" text-decoration-underline text-dark font-weight-bold">Se connecter</a>
-                </div>
-            </div>
-        </div>
-    </div>
+	</div>
 {% endblock %}
