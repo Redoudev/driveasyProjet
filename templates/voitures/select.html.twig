@@ -9,7 +9,7 @@
 	<section class="container mt-3">
 		<div class="d-flex flex-row justify-content-start flex-wrap mb-3">
 			{% for voiture in voitures %}
-				<div class="p-2 flex-grow-1">
+				<div class="p-2">
 					<div class="d-flex flex-column">
 						<div class= "p-2">
 							<a href="{{ path('app_reservation_resa', {id: voiture.id}) }}">
