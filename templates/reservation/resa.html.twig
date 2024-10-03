@@ -1,21 +1,91 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Reservation
+{% block title %}Réservation -
+	{{ voiture.marque }}
+	{{ voiture.modele }}
 {% endblock %}
 
 {% block body %}
-    {% for message in app.flashes('error') %}
-    <div class="alert alert-danger">
-        {{ message }}
-    </div>
-    {% endfor %}
-    
-	<div class="admin-content">
-		<div class="col-md-9 ">
-			<div class="datas-content">
-				{{ include('reservation/_form.html.twig') }}
+	<h1 class="text-center m-5 p-3">Réserver la voiture :
+		{{ voiture.marque }}
+		{{ voiture.modele }}</h1>
+
+	<section class="bg-gray">
+		<div class="container">
+			<div class="p-5 row justify-content-between">
+				<div class="col-12 col-md-5 bg-white rounded text-center">
+					<div class="card-title justify-content-center">
+						<p>{{ voiture.marque }}</p>
+						<p>{{ voiture.modele }}</p>
+					</div>
+					<div class="card-img">
+						<img src="{{ voiture.image }}" alt="Voiture image" class="img-fluid">
+					</div>
+					<div class="card-infos">
+						<p>{{ voiture.annee }}</p>
+						<p>{{ voiture.couleur }}</p>
+						<p>{{ voiture.boite }}</p>
+						<p>{{ voiture.carburant }}</p>
+					</div>
+					<div class="card-price">
+						<p>{{ voiture.prix }}€ / Jours</p>
+					</div>
+				</div>
+				<div class="col-12 col-md-5 text-center">
+					<h2 class="mb-5">Formulaire de Réservation</h2>
+					<div id="error-message" class="alert alert-danger" style="display: none;"></div>
+					<div id="success-message" class="alert alert-success" style="display: none;"></div>
+
+					{{ form_start(form, {'attr': {'id': 'reservation-form'}}) }}
+					<div class="form-group">
+						{{ form_label(form.date_depart) }}
+						{{ form_widget(form.date_depart, {'attr': {'class': 'form-control'}}) }}
+					</div>
+					<div class="form-group">
+						{{ form_label(form.date_retour) }}
+						{{ form_widget(form.date_retour, {'attr': {'class': 'form-control'}}) }}
+					</div>
+					<div class="form-group">
+						{{ form_label(form.agence) }}
+						{{ form_widget(form.agence, {'attr': {'class': 'form-control'}}) }}
+					</div>
+					<button type="submit" class="btn btn-primary mt-5">Réserver</button>
+					{{ form_end(form) }}
+				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 
+	 <script>
+	  document
+	    .getElementById("reservation-form")
+	    .addEventListener("submit", function (e) {
+	      e.preventDefault();
+	      const form = this;
+	      const formData = new FormData(form);
+	
+	      fetch(form.action, {
+	        method: "POST",
+	        body: formData,
+	        headers: {
+	          "X-Requested-With": "XMLHttpRequest",
+	        },
+	      })
+	        .then((response) => response.json())
+	        .then((data) => {
+	          if (data.error) {
+	            document.getElementById("error-message").style.display = "block";
+	            document.getElementById("error-message").textContent = data.message;
+	            document.getElementById("success-message").style.display = "none";
+	          } else {
+	            document.getElementById("success-message").style.display = "block";
+	            document.getElementById("success-message").textContent =
+	              data.message;
+	            document.getElementById("error-message").style.display = "none";
+	            form.reset();
+	          }
+	        })
+	        .catch((error) => console.error("Erreur:", error));
+	    });
+	</script>
 {% endblock %}

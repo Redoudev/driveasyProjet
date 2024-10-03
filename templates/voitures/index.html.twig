@@ -45,9 +45,15 @@
 									<td>{{ voiture.boite }}</td>
 									<td>{{ voiture.carburant }}</td>
 									<td>{{ voiture.prix }}</td>
-									<td>{{ voiture.image }}</td>
+									<td><img src="{{ voiture.image }}" alt="Voiture image" class=""></td>
 									<td>
 										<a href="{{ path('app_voitures_edit', {'id': voiture.id}) }}">Modifier</a>
+										<a href="{{ path('app_voitures_duplicate', {'id': voiture.id}) }}">Dupliquer</a>
+										<form method="post" action="{{ path('app_voitures_delete', {'id': voiture.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" style="display:inline;">
+											<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ voiture.id) }}">
+											<button class="btn btn-danger btn-sm">Supprimer</button>
+										</form>
+
 									</td>
 								</tr>
 							{% else %}

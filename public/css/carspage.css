@@ -1,6 +1,58 @@
-div a img {
-    max-width: 400px;
-    min-width: 350px;
-    max-height: 400px;
-    min-height: 350px;
-  }
+
+.card-voiture {
+  background-color: #f1f1f1;
+  padding: 2rem 2rem 2rem 2rem;
+  transform: scale(0.9);
+  border: 2px solid transparent;
+  transition: 0.3s ease-in-out;
+}
+.card-title {
+  display: flex;
+  gap: 1rem;
+}
+.card-title p {
+  color: #000;
+  font-size: 2rem;
+  font-weight: 600;
+}
+.card-img img {
+  object-fit: contain;
+  width: 340px;
+  height: 240px;
+}
+.card-infos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.card-infos p {
+  color: #000;
+  font-size: 1rem;
+}
+.card-price {
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-price p {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: 500;
+}
+
+.card-voiture:hover {
+  border: 2px solid #000;
+  transition: 0.3s ease-in-out;
+  transform: scale(0.8);
+}
+
+.filtre-voiture {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
+

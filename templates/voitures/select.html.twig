@@ -6,51 +6,67 @@
 {% block body %}
 	<h1 class="text-center m-5 p-3">Voitures</h1>
 
-	<section class="container mt-3">
-		<div class="d-flex flex-row justify-content-start flex-wrap mb-3">
-			{% for voiture in voitures %}
-				<div class="p-2">
-					<div class="d-flex flex-column">
-						<div class= "p-2">
-							<a href="{{ path('app_reservation_resa', {id: voiture.id}) }}">
-								<img src="{{ voiture.image }}" alt="Voiture image">
-							</a>
-						</div>
-						<div class="p-2">
-							<table class="table">
-								<tbody>
-									<tr>
-										<th>Marque</th>
-										<td>{{ voiture.marque }}</td>
-									</tr>
-									<tr>
-										<th>Annee</th>
-										<td>{{ voiture.annee }}</td>
-									</tr>
-									<tr>
-										<th>Couleur</th>
-										<td>{{ voiture.couleur }}</td>
-									</tr>
-									<tr>
-										<th>Boite</th>
-										<td>{{ voiture.boite }}</td>
-									</tr>
-									<tr>
-										<th>Carburant</th>
-										<td>{{ voiture.carburant }}</td>
-									</tr>
-									<tr>
-										<th>Prix</th>
-										<td>{{ voiture.prix }}</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
+	<section class="bg-gray">
+		<div class="container">
+			<form method="get" action="{{ path('app_voitures_select') }}" class="text-center filtre-voiture">
+				<div>
+					<label for="marque">Filtrer par marque :</label>
+					<select name="marque" id="marque" class="form-select">
+						<option value="">Toutes les marques</option>
+						{% for marque in marques %}
+							<option value="{{ marque }}" {% if marque == selectedMarque %} selected {% endif %}>{{ marque }}</option>
+						{% endfor %}
+					</select>
 				</div>
+				<div>
+					<label for="boite">Filtrer par boîte :</label>
+					<select name="boite" id="boite" class="form-select">
+						<option value="">Toutes les boîtes</option>
+						{% for boite in boites %}
+							<option value="{{ boite }}" {% if boite == selectedBoite %} selected {% endif %}>{{ boite }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<div>
+					<label for="carburant">Filtrer par carburant :</label>
+					<select name="carburant" id="carburant" class="form-select">
+						<option value="">Tous les carburants</option>
+						{% for carburant in carburants %}
+							<option value="{{ carburant }}" {% if carburant == selectedCarburant %} selected {% endif %}>{{ carburant }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<button type="submit" class="btn btn-primary mt-3">Filtrer</button>
+			</form>
 
-			{% endfor %}
+			<div id="voiture-list" class="p-5 row">
+				{% for voiture in voitures %}
+					<a href="{{ path('app_reservation_resa', {id: voiture.id}) }}" class="col-12 col-md-4 card-voiture">
+						<div class="card-title">
+							<p>{{ voiture.marque }}</p>
+							<p>{{ voiture.modele }}</p>
+						</div>
+						<div class="card-img">
+							<img src="{{ voiture.image }}" alt="Voiture image" class="img-fluid">
+						</div>
+						<div class="card-infos">
+							<p>{{ voiture.annee }}</p>
+							<p>{{ voiture.couleur }}</p>
+							<p>{{ voiture.boite }}</p>
+							<p>{{ voiture.carburant }}</p>
+						</div>
+						<div class="card-price">
+							<p>{{ voiture.prix }}€ / Jours</p>
+						</div>
+					</a>
+				{% endfor %}
+			</div>
+
+			{% if totalVoitures > 12 %}
+				<div class="text-center">
+					<button id="load-more" class="btn btn-primary m-5">Voir plus</button>
+				</div>
+			{% endif %}
 		</div>
 	</section>
-
 {% endblock %}
