@@ -23,6 +23,7 @@
 								<th>Id</th>
 								<th>Date depart</th>
 								<th>Date retour</th>
+								<th>Client</th>
 								<th>actions</th>
 							</tr>
 						</thead>
@@ -32,6 +33,8 @@
 									<td>{{ reservation.id }}</td>
 									<td>{{ reservation.dateDepart ? reservation.dateDepart|date('Y-m-d') : '' }}</td>
 									<td>{{ reservation.dateRetour ? reservation.dateRetour|date('Y-m-d') : '' }}</td>
+									<td>{{ reservation.user.prenom}}
+										{{ reservation.user.nom}}</td>
 									<td>
 										<a href="{{ path('app_reservation_edit', {'id': reservation.id}) }}">Modifier</a>
 									</td>

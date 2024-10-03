@@ -116,6 +116,10 @@ body
   color: #fff;
 }
 
+td img {
+  max-width: 200px;
+}
+
 @media only screen and (max-width: 760px) {
   .admin-content {
     flex-direction: column;

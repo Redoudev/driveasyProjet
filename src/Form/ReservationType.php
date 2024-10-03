@@ -24,15 +24,19 @@ class ReservationType extends AbstractType
             ])
             ->add('agence', EntityType::class, [
                 'class' => Agence::class,
-                'choice_label' => 'id',
+                'choice_label' => 'nom',
             ])
             ->add('user', EntityType::class, [
                 'class' => User::class,
-                'choice_label' => 'id',
+                'choice_label' => function (User $user) {
+                    return $user->getNom() . ' - ' . $user->getPrenom();
+                },
             ])
             ->add('voiture', EntityType::class, [
                 'class' => Voitures::class,
-                'choice_label' => 'id',
+                'choice_label' => function (Voitures $voiture) {
+                    return $voiture->getMarque() . ' - ' . $voiture->getModele();
+                },
             ])
         ;
     }
