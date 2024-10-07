@@ -14,11 +14,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/reservation')]
 final class ReservationController extends AbstractController
 {
     #[Route(name: 'app_reservation_index', methods: ['GET'])]
+    #[IsGranted(attribute:"ROLE_ADMIN")]
     public function index(ReservationRepository $reservationRepository): Response
     {
         return $this->render('reservation/index.html.twig', [
@@ -27,6 +29,7 @@ final class ReservationController extends AbstractController
     }
 
     #[Route('/new', name: 'app_reservation_new', methods: ['GET', 'POST'])]
+    #[IsGranted(attribute:"ROLE_ADMIN")]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $reservation = new Reservation();
@@ -47,6 +50,7 @@ final class ReservationController extends AbstractController
     }
 
     #[Route('/resa/{id}', name: 'app_reservation_resa', methods: ['GET', 'POST'])]
+    #[IsGranted(attribute:"ROLE_USER")]
     public function reservation(
         int $id,
         VoituresRepository $voituresRepository,
@@ -103,8 +107,6 @@ final class ReservationController extends AbstractController
                         'message' => 'Votre réservation a bien été enregistrée.',
                     ]);
                 }
-
-                return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
             }
         }
 
@@ -118,6 +120,7 @@ final class ReservationController extends AbstractController
 
 
     #[Route('/{id}', name: 'app_reservation_show', methods: ['GET'])]
+    #[IsGranted(attribute:"ROLE_ADMIN")]
     public function show(Reservation $reservation): Response
     {
         return $this->render('reservation/show.html.twig', [
@@ -126,6 +129,7 @@ final class ReservationController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_reservation_edit', methods: ['GET', 'POST'])]
+    #[IsGranted(attribute:"ROLE_ADMIN")]
     public function edit(Request $request, Reservation $reservation, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ReservationType::class, $reservation);
@@ -144,6 +148,7 @@ final class ReservationController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_reservation_delete', methods: ['POST'])]
+    #[IsGranted(attribute:"ROLE_ADMIN")]
     public function delete(Request $request, Reservation $reservation, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $reservation->getId(), $request->getPayload()->getString('_token'))) {
