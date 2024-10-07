@@ -11,10 +11,12 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use App\Form\EditAccountType;
 use App\Form\ChangePasswordType;
 use App\Repository\ReservationRepository;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class AccountController extends AbstractController
 {
     #[Route('/account', name: 'app_account')]
+    #[IsGranted(attribute:"ROLE_USER")]
     public function index(): Response
     {
         return $this->render('account/account.html.twig', [
@@ -24,6 +26,7 @@ class AccountController extends AbstractController
 
 
     #[Route('/account/edit', name: 'app_account_edit')]
+    #[IsGranted(attribute:"ROLE_USER")]
     public function edit_account(Request $request, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
@@ -46,6 +49,7 @@ class AccountController extends AbstractController
     }
 
     #[Route('/account/password', name: 'app_account_password')]
+    #[IsGranted(attribute:"ROLE_USER")]
     public function changePassword(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = $this->getUser();
@@ -77,6 +81,7 @@ class AccountController extends AbstractController
     }
 
     #[Route('/account/reservations', name: 'app_account_reservations')]
+    #[IsGranted(attribute:"ROLE_USER")]
     public function reservations(ReservationRepository $reservationRepository): Response
     {
         $user = $this->getUser();

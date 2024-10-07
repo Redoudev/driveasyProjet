@@ -11,11 +11,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/voitures')]
 final class VoituresController extends AbstractController
 {
     #[Route(name: 'app_voitures_index', methods: ['GET'])]
+    #[IsGranted(attribute:"ROLE_ADMIN")]
     public function index(VoituresRepository $voituresRepository): Response
     {
         return $this->render('voitures/index.html.twig', [
@@ -24,6 +26,7 @@ final class VoituresController extends AbstractController
     }
 
     #[Route('/select', name: 'app_voitures_select', methods: ['GET'])]
+    #[IsGranted(attribute:"ROLE_USER")]
     public function selectionVoitures(VoituresRepository $voituresRepository, Request $request): Response
     {
         // Récupérer les filtres
@@ -57,6 +60,7 @@ final class VoituresController extends AbstractController
 
 
     #[Route('/new', name: 'app_voitures_new', methods: ['GET', 'POST'])]
+    #[IsGranted(attribute:"ROLE_ADMIN")]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $voiture = new Voitures();
@@ -77,6 +81,7 @@ final class VoituresController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_voitures_show', methods: ['GET'], requirements: ['id' => '\d+'])]
+    #[IsGranted(attribute:"ROLE_ADMIN")]
     public function show(Voitures $voiture): Response
     {
         return $this->render('voitures/show.html.twig', [
@@ -85,6 +90,7 @@ final class VoituresController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_voitures_edit', methods: ['GET', 'POST'], requirements: ['id' => '\d+'])]
+    #[IsGranted(attribute:"ROLE_ADMIN")]
     public function edit(Request $request, Voitures $voiture, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(VoituresType::class, $voiture);
@@ -103,6 +109,7 @@ final class VoituresController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_voitures_delete', methods: ['POST'], requirements: ['id' => '\d+'])]
+    #[IsGranted(attribute:"ROLE_ADMIN")]
     public function delete(Request $request, Voitures $voiture, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $voiture->getId(), $request->getPayload()->getString('_token'))) {
@@ -114,6 +121,7 @@ final class VoituresController extends AbstractController
     }
 
     #[Route('/voitures/{id}/duplicate', name: 'app_voitures_duplicate', methods: ['GET', 'POST'], requirements: ['id' => '\d+'])]
+    #[IsGranted(attribute:"ROLE_ADMIN")]
     public function duplicate(int $id, VoituresRepository $voituresRepository, EntityManagerInterface $entityManager): Response
     {
         $voiture = $voituresRepository->find($id);
@@ -133,6 +141,7 @@ final class VoituresController extends AbstractController
     }
 
     #[Route('/load-more', name: 'load_more_voitures', methods: ['GET'])]
+    #[IsGranted(attribute:"ROLE_USER")]
     public function loadMoreVoitures(Request $request, VoituresRepository $voituresRepository): JsonResponse
     {
         $offset = $request->query->getInt('offset', 0);
