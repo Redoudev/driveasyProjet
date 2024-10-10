@@ -20,8 +20,10 @@ final class VoituresController extends AbstractController
     #[IsGranted(attribute:"ROLE_ADMIN")]
     public function index(VoituresRepository $voituresRepository): Response
     {
+        $user = $this->getUser();
         return $this->render('voitures/index.html.twig', [
             'voitures' => $voituresRepository->findAll(),
+            'user' => $user,
         ]);
     }
 
@@ -63,6 +65,7 @@ final class VoituresController extends AbstractController
     #[IsGranted(attribute:"ROLE_ADMIN")]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
         $voiture = new Voitures();
         $form = $this->createForm(VoituresType::class, $voiture);
         $form->handleRequest($request);
@@ -77,6 +80,7 @@ final class VoituresController extends AbstractController
         return $this->render('voitures/new.html.twig', [
             'voiture' => $voiture,
             'form' => $form,
+            'user' => $user,
         ]);
     }
 
@@ -93,6 +97,7 @@ final class VoituresController extends AbstractController
     #[IsGranted(attribute:"ROLE_ADMIN")]
     public function edit(Request $request, Voitures $voiture, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
         $form = $this->createForm(VoituresType::class, $voiture);
         $form->handleRequest($request);
 
@@ -105,6 +110,7 @@ final class VoituresController extends AbstractController
         return $this->render('voitures/edit.html.twig', [
             'voiture' => $voiture,
             'form' => $form,
+            'user' => $user,
         ]);
     }
 
