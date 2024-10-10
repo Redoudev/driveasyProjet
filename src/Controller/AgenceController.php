@@ -19,28 +19,32 @@ final class AgenceController extends AbstractController
     #[Route(name: 'app_agence_index', methods: ['GET'])]
     public function index(AgenceRepository $agenceRepository): Response
     {
+        $user = $this->getUser();
         return $this->render('agence/index.html.twig', [
             'agences' => $agenceRepository->findAll(),
+            'user' => $user,
         ]);
     }
 
     #[Route('/new', name: 'app_agence_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
         $agence = new Agence();
         $form = $this->createForm(AgenceType::class, $agence);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($agence);
             $entityManager->flush();
-
+            
             return $this->redirectToRoute('app_agence_index', [], Response::HTTP_SEE_OTHER);
         }
-
+        
         return $this->render('agence/new.html.twig', [
             'agence' => $agence,
             'form' => $form,
+            'user' => $user,
         ]);
     }
 
@@ -55,18 +59,20 @@ final class AgenceController extends AbstractController
     #[Route('/{id}/edit', name: 'app_agence_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Agence $agence, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
         $form = $this->createForm(AgenceType::class, $agence);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
+            
             return $this->redirectToRoute('app_agence_index', [], Response::HTTP_SEE_OTHER);
         }
-
+        
         return $this->render('agence/edit.html.twig', [
             'agence' => $agence,
             'form' => $form,
+            'user' => $user,
         ]);
     }
 

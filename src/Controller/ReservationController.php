@@ -23,8 +23,10 @@ final class ReservationController extends AbstractController
     #[IsGranted(attribute:"ROLE_ADMIN")]
     public function index(ReservationRepository $reservationRepository): Response
     {
+        $user = $this->getUser();
         return $this->render('reservation/index.html.twig', [
             'reservations' => $reservationRepository->findAll(),
+            'user' => $user,
         ]);
     }
 
@@ -32,20 +34,22 @@ final class ReservationController extends AbstractController
     #[IsGranted(attribute:"ROLE_ADMIN")]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($reservation);
             $entityManager->flush();
-
+            
             return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
         }
-
+        
         return $this->render('reservation/new.html.twig', [
             'reservation' => $reservation,
             'form' => $form,
+            'user' => $user,
         ]);
     }
 
@@ -132,18 +136,20 @@ final class ReservationController extends AbstractController
     #[IsGranted(attribute:"ROLE_ADMIN")]
     public function edit(Request $request, Reservation $reservation, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
+            
             return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
         }
-
+        
         return $this->render('reservation/edit.html.twig', [
             'reservation' => $reservation,
             'form' => $form,
+            'user' => $user,
         ]);
     }
 
